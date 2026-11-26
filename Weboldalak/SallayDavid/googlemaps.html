@@ -1,25 +1,49 @@
-<HTML>
-  <!-- Ez a fejléc -->
+<!DOCTYPE html>
+<html>
   <HEAD>
     <meta charset="UTF-8">
     <TITLE>Sallay Dávid oldala</TITLE>
   </HEAD>
-  <!-- Ez a törzs -->
-  <BODY>
-    <H1>Google Maps</H1>
-
+<body>
+<H1>Térkép</H1>
 <gmp-map
-    center="46.031192,  17.666243"
-    zoom="6"
-    map-id="DEMO_MAP_ID"
-    style="height: 400px"
-  >
-  <gmp-map>
-<script
+    center="47.68027826764161, 16.57734505872476"
+    zoom="8"
+map-id="DEMO_MAP_ID"
+   style="height: 400px; display: block; width: 80%; border: 4px solid darkgreen; border-radius: 16px;"
+   >
+   <gmp-advanced-marker
+        position="47.68027826764161, 16.57734505872476"
+        title="Egyetem">
+<gmp-pin
+background="blue"
+glyph-color="white">
+</gmp-pin>
+</gmp-advanced-marker>
+</gmp-map>
+
+ <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVuH_e5c6wToSwypEHk_7C6dVRwzwWSc&libraries=maps,marker"
     defer
-   ></script>
+  ></script>
+  <script>
+    window.addEventListener("load", async () => {
+      const { InfoWindow } = await google.maps.importLibrary("maps");
+      await customElements.whenDefined("gmp-map");
 
+      const map = document.querySelector("gmp-map");
+      const marker = document.querySelector("gmp-advanced-marker");
 
- </BODY>
-</HTML>
+      const infoWindow = new InfoWindow({
+        content: "<strong>Egyetem</strong>",
+        headerDisabled: true
+      });
+
+      infoWindow.open({
+        anchor: marker,
+        map: map.innerMap
+      });
+    });
+  </script>
+</body>
+</html>

@@ -16,7 +16,29 @@
      <li>Coffee</li>
      <li>Tea</li>
      <li>Milk</li>
+
    </ol>
   <a href="googletkp.html">Google Térképem linkje</a> linkje.
+<br><br>
+    <p><b>Hangeffektek:</b></p>
+    <button onclick="hangLejatszas('fart_RFrlJfU.mp3')">Fing 1</button>
+    <button onclick="hangLejatszas('long burp.mp3')">Hosszú böfögés</button>
+    <button onclick="hangLejatszas('loud-ass-burp.mp3')">Hangos böfögés</button>
+    <button onclick="hangLejatszas('shitting.mp3')">Fémcső / effekt</button>
+    <button onclick="hangLejatszas('vomit-burp-meme.mp3')">Mém böfögés</button>
+    <button onclick="hangLejatszas('wet-fart-sound.mp3')">Fing 2</button>
+
+    <script>
+      let aktualisHang = null;
+
+      function hangLejatszas(fajlnev) {
+        if (aktualisHang) {
+          aktualisHang.pause();
+          aktualisHang.currentTime = 0;
+        }
+        aktualisHang = new Audio(fajlnev);
+        aktualisHang.play();
+      }
+</script>
   </BODY>
 </HTML>
