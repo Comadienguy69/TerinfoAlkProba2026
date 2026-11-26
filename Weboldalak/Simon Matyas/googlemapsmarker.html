@@ -26,5 +26,25 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKFOzFkFjPTfU7CYOUxWaKaqoXF-WXz9c&libraries=maps,marker"
     defer
   ></script>
+  <script>
+    window.addEventListener("load", async () => {
+      const { InfoWindow } = await google.maps.importLibrary("maps");
+      await customElements.whenDefined("gmp-map");
+
+      const map = document.querySelector("gmp-map");
+      const marker = document.querySelector("gmp-advanced-marker");
+
+      // A headerDisabled: true eltünteti az X gombot és a felső fejlécet
+      const infoWindow = new InfoWindow({
+        content: "<strong>Nyalka</strong>",
+        headerDisabled: true
+      });
+
+      infoWindow.open({
+        anchor: marker,
+        map: map.innerMap
+      });
+    });
+  </script>
 </body>
 </html>
